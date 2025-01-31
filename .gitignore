@@ -1,0 +1,56 @@
+# Sistema Operacional
+*.DS_Store
+Thumbs.db
+
+# Arquivos de Log
+*.log
+*.tlog
+
+# Diretórios gerados por build
+bin/
+obj/
+out/
+
+# Arquivos gerados por compilação
+*.exe
+*.dll
+*.pdb
+*.app
+*.ipa
+*.so
+*.dylib
+*.class
+
+# Configurações do usuário
+*.user
+*.lock.json
+*.suo
+*.sln.docstates
+
+# Configurações do Visual Studio
+.vs/
+.vscode/
+
+# Configurações locais
+*.local.json
+*.ide.json
+
+# Diretórios de pacote
+node_modules/
+bower_components/
+packages/
+!.nuget/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.cache
+*.bak
+
+# Configuração de segurança
+secrets.json
+
+# Diretórios de publicação
+publish/
+wwwroot/
+dist/
