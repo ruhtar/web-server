@@ -45,15 +45,14 @@ public class Server
         Listener = InitializeListener(ips);
         Listener.Start();
 
-        //Task.Run(() => {
-         
-        //});
-
-        while (true)
+        Task.Run(() =>
         {
-            _semaphore.WaitOne();
-            StartConnectionListener(Listener);
-        }
+            while (true)
+            {
+                _semaphore.WaitOne();
+                StartConnectionListener(Listener);
+            }
+        });
     }
 
     /// <summary>
@@ -64,15 +63,9 @@ public class Server
         // Wait for a connection. Return to caller while we wait.
         HttpListenerContext context = await listener.GetContextAsync();
 
+        await Router.HandleAsync(context);
+
         // Release the semaphore so that another listener can be immediately started up.
         _semaphore.Release();
-
-        // We have a connection, do something...
-
-        string response = "Hello World! " + DateTime.UtcNow.AddHours(-3).ToString();
-        byte[] encoded = Encoding.UTF8.GetBytes(response);
-        context.Response.ContentLength64 = encoded.Length;
-        context.Response.OutputStream.Write(encoded, 0, encoded.Length);
-        context.Response.OutputStream.Close();
     }
 }
